@@ -12,7 +12,7 @@
         md12
       >
         <material-card
-          color="green"
+          color="primary"
           title="Simple Table"
           text="Here is a subtitle for this table"
         >
@@ -26,7 +26,7 @@
               slot-scope="{ header }"
             >
               <span
-                class="subheading font-weight-light text-success text--darken-3"
+                class="subheading font-weight-light text-secondary text--darken-3"
                 v-text="header.text"
               />
             </template>

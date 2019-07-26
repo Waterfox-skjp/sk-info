@@ -40,12 +40,6 @@
   }
 }
 
-@mixin drawer-active-colors($color-name, $color) {
-  .v-navigation-drawer .v-list .v-list-item .v-list__tile.v-list__tile--active.#{$color-name} {
-    background-color: $color !important;
-    @include shadow-big-color($color);
-  }
-}
 
 @mixin toolbar-colors($color-name, $color) {
   &.#{$color-name} {

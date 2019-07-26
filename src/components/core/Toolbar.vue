@@ -12,12 +12,11 @@
       >
         <v-btn
           v-if="responsive"
-          class="default v-btn--simple"
           dark
           icon
           @click.stop="onClickBtn"
         >
-          <v-icon>mdi-view-list</v-icon>
+          <v-icon large color="primary">mdi-menu</v-icon>
         </v-btn>
         {{ title }}
       </v-toolbar-title>
@@ -30,13 +29,6 @@
         layout
         py-2
       >
-        <v-text-field
-          v-if="responsiveInput"
-          class="mr-4 mt-2 purple-input"
-          label="Search..."
-          hide-details
-          color="purple"
-        />
         <router-link
           v-ripple
           class="toolbar-items"

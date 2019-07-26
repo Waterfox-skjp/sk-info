@@ -62,6 +62,9 @@ h2.title{
 .text-primary {
   color: $brand-primary !important;
 }
+.text-secondary {
+  color: $brand-secondary !important;
+}
 .text-danger {
   color: $brand-danger !important;
 }
@@ -72,5 +75,5 @@ h2.title{
   color: $brand-info !important;
 }
 .text-gray{
-    color: $gray-light !important;
+  color: $gray-light !important;
 }

@@ -46,9 +46,3 @@ strong {
 .v-list--three-line .v-list__tile {
   height: auto;
 }
-
-@include drawer-active-colors('primary', $brand-primary);
-@include drawer-active-colors('success', $brand-success);
-@include drawer-active-colors('danger', $brand-danger);
-@include drawer-active-colors('info', $brand-info);
-@include drawer-active-colors('warning', $brand-warning);

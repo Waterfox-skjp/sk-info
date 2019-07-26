@@ -5,39 +5,33 @@
  */
 export default [
   {
-    path: '/dashboard',
-    // Relative to /src/views
-    view: 'Dashboard'
+    path: '/',
+    view: 'Home'
   },
   {
-    path: '/user-profile',
+    path: '/user-profile/',
     name: 'User Profile',
     view: 'UserProfile'
   },
   {
-    path: '/table-list',
+    path: '/table-list/',
     name: 'Table List',
     view: 'TableList'
   },
   {
-    path: '/typography',
+    path: '/typography/',
     view: 'Typography'
   },
   {
-    path: '/icons',
+    path: '/icons/',
     view: 'Icons'
   },
   {
-    path: '/maps',
+    path: '/maps/',
     view: 'Maps'
   },
   {
-    path: '/notifications',
+    path: '/notifications/',
     view: 'Notifications'
-  },
-  {
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    view: 'Upgrade'
   }
 ]
