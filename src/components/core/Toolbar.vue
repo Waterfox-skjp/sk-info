@@ -1,10 +1,11 @@
 <template>
   <v-toolbar
     id="core-toolbar"
-
+    app
+    fixed
     flat
     prominent
-    style="background: #eee;"
+    height="70"
   >
     <div class="v-toolbar-title">
       <v-toolbar-title

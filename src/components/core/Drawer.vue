@@ -55,7 +55,7 @@ import {
 
 export default {
   data: () => ({
-    logo: './img/vuetifylogo.png',
+    logo: '/img/vuetifylogo.png',
     links: [
       {
         to: '/',

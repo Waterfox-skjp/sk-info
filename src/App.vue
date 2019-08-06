@@ -2,9 +2,10 @@
   <v-app>
     <core-toolbar />
 
-    <core-drawer />
+
 
     <core-view />
+    <core-drawer />
   </v-app>
 </template>
 
