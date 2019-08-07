@@ -2,7 +2,7 @@
   min-height: $toolbar-min-height;
   border-radius: $border-radius-base;
   margin-bottom: $margin-general;
-  &.theme--light { background: #eee; }
+  &.theme--light { background: #fff; }
 
   &:not(.v-toolbar--fixed) .v-toolbar__content {
     margin-left: $toolbar-margin-left;

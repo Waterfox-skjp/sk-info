@@ -36,7 +36,7 @@
           ></v-text-field>
         </template>
         <v-date-picker @change="testA" v-model="date" @input="menu2 = false" color="primary" :show-current="false"       locale="jp-ja"
-      :day-format="date => new Date(date).getDate()" min="2019-07-06"></v-date-picker>
+      :day-format="date => new Date(date).getDate()" :allowed-dates="allowedDate"></v-date-picker>
       </v-menu>
           <v-data-table
             :headers="headers"
@@ -56,10 +56,10 @@
               slot="items"
               slot-scope="{ item }"
             >
-              <td>{{ item.pathName }}</td>
-              <td>{{ item.trainNum }}</td>
-              <td></td>
-              <td class="text-xs-right"></td>
+              <td>{{ item.pathNum }}</td>
+              <td>{{ item.pathType | pathTypeSet }}</td>
+              <td>{{ item.trainNum }}<template v-if="item.trainNum">F</template></td>
+              <td>{{ item.trainType }}<template v-if="item.trainType">形</template></td>
             </template>
           </v-data-table>
         </material-card>
@@ -73,7 +73,8 @@ import { db } from '@/plugins/firebase'
 
 export default {
   data: () => ({
-      date: new Date().toISOString().substr(0, 10),
+      date: '',
+      maxdate: '',
       menu: false,
       modal: false,
       menu2: false,
@@ -97,15 +98,18 @@ pathList: [],
       {
         sortable: false,
         text: 'Salary',
-        value: 'salary',
-        align: 'right'
+        value: 'salary'
+        //align: 'right'
       }
     ]
   }),
-  mounted(){
+  created(){
+this.testB()
+  },
+  beforeUpdate(){
     this.testA()
   },
-  methods:{
+  methods: {
     testA(){
     var cityRef = db.collection('trainPath').doc(this.date);
     cityRef.get()
@@ -115,6 +119,39 @@ pathList: [],
       .catch(err => {
         console.log('Error getting document', err);
       })
+    },
+    allowedDate: function (val) {
+      // 今日～100日後までを選べるようにする
+      let startday = new Date('2019-07-06')
+      let today = new Date(this.maxdate)
+      return startday <= new Date(val) && new Date(val) <= today
+    },
+    testB(){
+db.collection("trainPath").orderBy("timestamp", "desc").limit(1)
+  .get()
+  .then((querySnapshot) => {
+     querySnapshot.forEach( (doc) => {
+       var self = this
+      self.date = doc.id
+      self.maxdate = doc.id
+     });
+  })
+  .catch( (error) => {
+     console.log(`データの取得に失敗しました (${error})`);
+  });
+    }
+  },
+  filters: {
+    pathTypeSet(x){
+      var text
+      if(x == 'inline'){
+        text = '線内'
+      }else if(x == 'direct'){
+        text = '直通'
+      }else if(x == 'testrun'){
+        text = '試運転'
+      }
+      return text
     }
   }
 }

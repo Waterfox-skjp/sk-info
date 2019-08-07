@@ -3,7 +3,6 @@
     id="core-toolbar"
     app
     fixed
-    flat
     prominent
     height="70"
   >
@@ -12,7 +11,6 @@
         class="tertiary--text font-weight-light"
       >
         <v-btn
-          v-if="responsive"
           dark
           icon
           @click.stop="onClickBtn"
