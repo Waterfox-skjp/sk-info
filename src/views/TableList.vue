@@ -4,43 +4,61 @@
     fluid
     grid-list-xl
   >
-    <v-layout
-      justify-center
-      wrap
-    >
-      <v-flex
-        md12
-      >
+    <v-layout justify-center wrap>
+      <v-flex md12>
         <material-card
           color="primary"
-          title="Simple Table"
-          text="Here is a subtitle for this table"
+          title="運用一覧"
+          text="現在・過去の運用を一覧で見ることができます"
         >
-      <v-menu
-        v-model="menu2"
-        :close-on-content-click="false"
-        :nudge-right="40"
-        lazy
-        transition="scale-transition"
-        offset-y
-        full-width
-        min-width="290px"
-      >
-        <template v-slot:activator="{ on }">
-          <v-text-field
-            v-model="date"
-            label="Picker without buttons"
-            prepend-icon="mdi-calendar"
-            readonly
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker @change="testA" v-model="date" @input="menu2 = false" color="primary" :show-current="false"       locale="jp-ja"
-      :day-format="date => new Date(date).getDate()" :allowed-dates="allowedDate"></v-date-picker>
-      </v-menu>
+          <v-layout justify-space-between wrap>
+            <v-flex md3 xs6>
+              <v-menu
+                v-model="datePicker"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="setDate"
+                    label="日付を選択してください"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  @change="getData"
+                  v-model="setDate"
+                  @input="datePicker = false"
+                  color="primary"
+                  :show-current="false"
+                  locale="jp-ja"
+                  :day-format="date => new Date(date).getDate()"
+                  :allowed-dates="allowedDate"
+                >
+                </v-date-picker>
+              </v-menu>
+            </v-flex>
+            <v-flex md3 xs6>
+              <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
           <v-data-table
             :headers="headers"
             :items="pathList"
+            :search="search"
             hide-actions
           >
             <template
@@ -73,72 +91,68 @@ import { db } from '@/plugins/firebase'
 
 export default {
   data: () => ({
-      date: '',
-      maxdate: '',
-      menu: false,
-      modal: false,
-      menu2: false,
-pathList: [],
+    setDate: '',
+    maxDate: '',
+    search: '',
+    datePicker: false,
+    pathList: [],
     headers: [
       {
         sortable: false,
-        text: 'Name',
-        value: 'name'
+        text: '列車番号',
+        value: 'pathNum'
       },
       {
         sortable: false,
-        text: 'Country',
-        value: 'country'
+        text: '運用形態',
+        value: 'pathType'
       },
       {
         sortable: false,
-        text: 'City',
-        value: 'city'
+        text: '編成',
+        value: 'trainNum'
       },
       {
         sortable: false,
-        text: 'Salary',
-        value: 'salary'
+        text: '形式',
+        value: 'trainType'
         //align: 'right'
       }
     ]
   }),
   created(){
-this.testB()
+    this.getLastDate()
   },
   beforeUpdate(){
-    this.testA()
+    this.getData()
   },
   methods: {
-    testA(){
-    var cityRef = db.collection('trainPath').doc(this.date);
-    cityRef.get()
-      .then(doc => {
+    getData(){
+      var trainPath = db.collection('trainPath').doc(this.setDate);
+      trainPath.get().then(doc => {
         this.pathList = doc.data().pathData
       })
       .catch(err => {
-        console.log('Error getting document', err);
+        console.log('データの取得に失敗しました', err)
       })
     },
-    allowedDate: function (val) {
-      // 今日～100日後までを選べるようにする
+    allowedDate(val) {
       let startday = new Date('2019-07-06')
-      let today = new Date(this.maxdate)
-      return startday <= new Date(val) && new Date(val) <= today
+      let endDay = new Date(this.maxDate)
+      return startday <= new Date(val) && new Date(val) <= endDay
     },
-    testB(){
-db.collection("trainPath").orderBy("timestamp", "desc").limit(1)
-  .get()
-  .then((querySnapshot) => {
-     querySnapshot.forEach( (doc) => {
-       var self = this
-      self.date = doc.id
-      self.maxdate = doc.id
-     });
-  })
-  .catch( (error) => {
-     console.log(`データの取得に失敗しました (${error})`);
-  });
+    getLastDate(){
+      var trainPath = db.collection("trainPath").orderBy("timestamp", "desc").limit(1)
+      var self = this
+      trainPath.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          self.setDate = doc.id
+          self.maxDate = doc.id
+        })
+      })
+      .catch(err => {
+        console.log('データの取得に失敗しました', err)
+      })
     }
   },
   filters: {
