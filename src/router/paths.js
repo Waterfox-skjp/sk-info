@@ -19,6 +19,11 @@ export default [
     view: 'TrainPath'
   },
   {
+    path: '/train-mileage/',
+    name: 'Train Mileage',
+    view: 'TrainMileage'
+  },
+  {
     path: '/typography/',
     view: 'Typography'
   },

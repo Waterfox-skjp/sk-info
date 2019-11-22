@@ -24,7 +24,7 @@
           />
         </v-list-tile-avatar>
         <v-list-tile-title class="title">
-          Vuetify MD
+          SK info
         </v-list-tile-title>
       </v-list-tile>
       <v-divider/>
@@ -72,6 +72,11 @@ export default {
         icon: 'mdi-train',
         text: 'Train Path'
       },
+      {
+        to: '/train-mileage/',
+        icon: 'mdi-speedometer',
+        text: 'Train Mileage'
+      },
       // {
       //   to: '/typography/',
       //   icon: 'mdi-format-font',
@@ -84,7 +89,7 @@ export default {
       // },
       {
         to: '/maps/',
-        icon: 'mdi-map-marker',
+        icon: 'mdi-google-maps',
         text: 'Maps'
       },
       // {
