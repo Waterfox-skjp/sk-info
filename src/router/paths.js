@@ -9,14 +9,14 @@ export default [
     view: 'Home'
   },
   {
-    path: '/user-profile/',
-    name: 'User Profile',
-    view: 'UserProfile'
+    path: '/information/',
+    name: 'Information',
+    view: 'Information'
   },
   {
-    path: '/table-list/',
-    name: 'Table List',
-    view: 'TableList'
+    path: '/train-path/',
+    name: 'Train Path',
+    view: 'TrainPath'
   },
   {
     path: '/typography/',

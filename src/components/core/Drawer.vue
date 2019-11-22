@@ -63,35 +63,35 @@ export default {
         text: 'Home'
       },
       {
-        to: '/user-profile/',
+        to: '/information/',
         icon: 'mdi-information',
-        text: 'User Profile'
+        text: 'Information'
       },
       {
-        to: '/table-list/',
+        to: '/train-path/',
         icon: 'mdi-train',
         text: 'Train Path'
       },
-      {
-        to: '/typography/',
-        icon: 'mdi-format-font',
-        text: 'Typography'
-      },
-      {
-        to: '/icons/',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
-      },
+      // {
+      //   to: '/typography/',
+      //   icon: 'mdi-format-font',
+      //   text: 'Typography'
+      // },
+      // {
+      //   to: '/icons/',
+      //   icon: 'mdi-chart-bubble',
+      //   text: 'Icons'
+      // },
       {
         to: '/maps/',
         icon: 'mdi-map-marker',
         text: 'Maps'
       },
-      {
-        to: '/notifications/',
-        icon: 'mdi-bell',
-        text: 'Notifications'
-      }
+      // {
+      //   to: '/notifications/',
+      //   icon: 'mdi-bell',
+      //   text: 'Notifications'
+      // }
     ],
     responsive: false
   }),
