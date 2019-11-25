@@ -55,6 +55,7 @@
               ></v-text-field>
             </v-flex>
           </v-layout>
+          <v-progress-linear indeterminate v-if="pathList.length == 0" height="5"></v-progress-linear>
           <v-data-table
             :headers="headers"
             :items="pathList"
@@ -170,3 +171,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .v-progress-linear { margin: 0; }
+</style>
