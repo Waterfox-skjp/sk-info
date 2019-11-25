@@ -3,10 +3,7 @@
     fill-height
     fluid
   >
-    <v-layout
-      justify-center
-      align-center
-    >
+    <v-layout column>
       <v-flex xs12>
         <material-card
           color="primary"
@@ -14,47 +11,52 @@
           text="最新の運行情報を確認することができます"
         >
           <v-card-text>
-            <h2 class="font-weight-light mb-4">Typography</h2>
-
-            <v-container
-              class="pa-0"
-              grid-list-xl
-              fluid
-            >
-              <v-layout
-                v-for="(t, i) in typography"
-                :key="i"
-                align-end
-                wrap
+            <template v-if="infoJson">
+              <v-alert
+                :value="true"
+                :color="alertColor"
+                :icon="alertIcon"
+                outline
               >
-                <v-flex
-                  xs1
-                  md3>
-                  <span
-                    class="tim-note"
-                    v-text="t[0]"
-                  />
+                <div>{{ infoJson.update | dateFormat }} 時点</div>
+                <div class="subheading">{{ infoJson.text }}</div>
+              </v-alert>
+              <v-layout align-center justify-start v-if="infoJson.cause != '' || infoJson.tags.station != '' || infoJson.tags.line != ''">
+                <v-flex xs1>
+                  関連タグ：
                 </v-flex>
-                <v-flex xs8>
-                  <component
-                    :is="t[2]"
-                    :class="i"
-                  >
-                    <template v-if="i !== 'quote'">
-                      {{ t[1] }}
-                    </template>
-
-                    <p v-if="i === 'quote'">{{ t[1] }}</p>
-                    <small v-if="i === 'quote'">Kanye West, Musician</small>
-
-                    <template v-if="i === 'small'">
-                      <br>
-                      <small>Use 'small' tag for the headers</small>
-                    </template>
-                  </component>
+                <v-flex class="text-xs-left">
+                  <v-chip v-if="infoJson.cause">{{ infoJson.cause | causeFormat }}</v-chip>
+                  <v-chip v-for="(item, index) in infoJson.tags.station" :key="index">
+                    {{ item }}
+                  </v-chip>
+                  <v-chip v-for="(item, index) in infoJson.tags.line" :key="index">
+                    {{ item }}
+                  </v-chip>
                 </v-flex>
               </v-layout>
-            </v-container>
+            </template>
+            <template v-else>
+              <div class="text-xs-center">
+                <v-progress-circular
+                  :size="70"
+                  :width="7"
+                  color="primary"
+                  indeterminate
+                ></v-progress-circular>
+              </div>
+            </template>
+          </v-card-text>
+        </material-card>
+      </v-flex>
+      <v-flex xs12>
+        <material-card
+          color="primary"
+          title="試運転情報"
+          text="今日の試運転情報について確認することができます"
+        >
+          <v-card-text>
+
           </v-card-text>
         </material-card>
       </v-flex>
@@ -63,44 +65,87 @@
 </template>
 
 <script>
-const leader = 'I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.'
-const leaderShort = leader.slice(0, 105) + '...'
-const material = 'The Life of Material Dashboard'
-const small = 'Header with small subtitle'
+import dayjs from 'dayjs'
 
 export default {
   data: () => ({
-    typography: {
-      'heading-1': ['Header 1', material, 'h1'],
-      'heading-2': ['Header 2', material, 'h2'],
-      'heading-3': ['Header 3', material, 'h3'],
-      'heading-4': ['Header 4', material, 'h4'],
-      'heading-5': ['Header 5', material, 'h5'],
-      'heading-6 text-uppercase': ['Header 6', material, 'h6'],
-      '': ['Paragraph', leader, 'p'],
-      'quote': ['Quote', leader, 'blockquote'],
-      'text--disabled': ['Muted Text', leaderShort, 'p'],
-      'text-primary': ['Primary Text', leaderShort, 'p'],
-      'text-info': ['Info Text', leaderShort, 'p'],
-      'text-success': ['Success Text', leaderShort, 'p'],
-      'text-warning': ['Warning Text', leaderShort, 'p'],
-      'text-danger': ['Danger Text', leaderShort, 'p'],
-      'small': ['Small Tag', small, 'h2']
+    infoJson: '',
+    alertColor: '',
+    alertIcon: ''
+  }),
+  created() {
+    const self = this
+    const api = 'https://script.google.com/macros/s/AKfycbxVH5umFi8gveKyv1it29o5Tz7VfQKlnSoIwSO42qO2iTPgc1o/exec'
+    this.$http
+      .get(api)
+      .then(function(response) {
+        self.infoJson = response.data
+        var status = response.data.status
+        if(status == 'delay' || status == 'no-direct' || status == 'other'){
+          self.alertColor = 'warning'
+          self.alertIcon = 'mdi-alert'
+        }else if(status == 'stop'){
+          self.alertColor = 'danger'
+          self.alertIcon = 'mdi-alert-decagram'
+        }else{
+          self.alertColor = 'success'
+          self.alertIcon = 'mdi-information'
+        }
+      })
+  },
+  filters: {
+    dateFormat(x){
+      return dayjs(x).format('YYYY-MM-DD HH:mm')
+    },
+    causeFormat(y){
+      var cause = ''
+      switch(y) {
+        case 'accident-causing-injur':
+          cause = '人身事故'
+          break
+
+        case 'blackout':
+          cause = '停電'
+          break
+
+        case 'wind':
+          cause = '強風'
+          break
+
+        case 'earthquake':
+          cause = '地震'
+          break
+
+        case 'rain':
+          cause = '大雨'
+          break
+
+        case 'fog':
+          cause = '濃霧'
+          break
+
+        case 'typhoon':
+          cause = '台風'
+          break
+
+        case 'signal':
+          cause = '信号トラブル'
+          break
+
+        case 'mechanical':
+          cause = '車両故障'
+          break
+
+        case 'enter-tracks':
+          cause = '人立ち入り'
+          break
+
+        case 'patient':
+          cause = '急病人'
+          break
+      }
+      return cause
     }
-  })
+  }
 }
 </script>
-
-<style lang="scss">
-  .tim-note {
-    bottom: 10px;
-    color: #c0c1c2;
-    display: block;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 13px;
-    left: 0;
-    margin-left: 20px;
-    width: 260px;
-  }
-</style>
