@@ -14,7 +14,7 @@
           text="編成別の走行距離を確認することができます"
         >
           <v-card-text>
-            <chart></chart>
+            <chart style="position: relative; height: 1000px"></chart>
           </v-card-text>
         </material-card>
       </v-flex>
@@ -27,8 +27,8 @@ import Chart from '@/components/material/MileageChart.vue';
 
 export default {
   components: {
-    Chart,
-  },
+    Chart
+  }
 }
 </script>
 
