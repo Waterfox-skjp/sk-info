@@ -7,11 +7,11 @@ export default {
   data () {
     return {
       data: {
-        labels: ['8512', '8518', '8801', '8802', '8803', '8804', '8805', '8806', '8807', '8808', '8809', '8810', '8811', '8812', '8813', '8814', '8815', '8816', '8918', '8928', '8938', 'N818', 'N828', 'N838', 'N848', 'N858', '80016'],
+        labels: [],
         datasets: [
           {
             label: '走行距離（km）',
-            data: [10, 20, 30, 40, 50, 30],
+            data: this.mileage,
             backgroundColor: 'rgba(232, 82, 152, 0.2)',
             borderColor: 'rgba(232, 82, 152,1)',
             borderWidth: 1
@@ -26,7 +26,7 @@ export default {
             ticks: {
               beginAtZero: true, //0から始まる
               min: 0,
-              stepSize: 10
+              stepSize: 50
             },
             scaleLabel: {
               display: true,
@@ -47,8 +47,16 @@ export default {
       }
     }
   },
-  mounted () {
-    this.renderChart(this.data, this.options)
+  mounted() {
+    const api = 'https://script.google.com/macros/s/AKfycbzQX1bZCwguPr9SPWl1zGEn2CuAbzsn6-UWwaX1mWB_elhyMrw/exec'
+    this.$http.get(api).then(response => {
+      var result = response.data.mileageList
+      this.data['labels'] = result.map(item=>item.trainNum)
+      this.data['datasets'][0]['data'] = result.map(item=>item.mileage)
+
+      this.$emit('updated')
+      this.renderChart(this.data, this.options)
+    })
   }
 }
 </script>

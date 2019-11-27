@@ -14,7 +14,17 @@
           text="編成別の走行距離を確認することができます"
         >
           <v-card-text>
-            <chart style="position: relative; height: 1000px"></chart>
+            <template v-if="chartStatus == false">
+              <div class="text-xs-center">
+                <v-progress-circular
+                  :size="70"
+                  :width="7"
+                  color="primary"
+                  indeterminate
+                ></v-progress-circular>
+              </div>
+            </template>
+            <chart style="position: relative; height: 1000px" @updated="statusUpdate"></chart>
           </v-card-text>
         </material-card>
       </v-flex>
@@ -28,6 +38,16 @@ import Chart from '@/components/material/MileageChart.vue';
 export default {
   components: {
     Chart
+  },
+  data() {
+    return {
+      chartStatus: false
+    }
+  },
+  methods: {
+    statusUpdate(){
+      this.chartStatus = true
+    }
   }
 }
 </script>
