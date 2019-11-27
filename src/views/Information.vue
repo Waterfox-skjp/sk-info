@@ -74,24 +74,21 @@ export default {
     alertIcon: ''
   }),
   created() {
-    const self = this
     const api = 'https://script.google.com/macros/s/AKfycbxVH5umFi8gveKyv1it29o5Tz7VfQKlnSoIwSO42qO2iTPgc1o/exec'
-    this.$http
-      .get(api)
-      .then(function(response) {
-        self.infoJson = response.data
-        var status = response.data.status
-        if(status == 'delay' || status == 'no-direct' || status == 'other'){
-          self.alertColor = 'warning'
-          self.alertIcon = 'mdi-alert'
-        }else if(status == 'stop'){
-          self.alertColor = 'danger'
-          self.alertIcon = 'mdi-alert-decagram'
-        }else{
-          self.alertColor = 'success'
-          self.alertIcon = 'mdi-information'
-        }
-      })
+    this.$http.get(api).then(response => {
+      this.infoJson = response.data
+      var status = response.data.status
+      if(status == 'delay' || status == 'no-direct' || status == 'other'){
+        this.alertColor = 'warning'
+        this.alertIcon = 'mdi-alert'
+      }else if(status == 'stop'){
+        this.alertColor = 'danger'
+        this.alertIcon = 'mdi-alert-decagram'
+      }else{
+        this.alertColor = 'success'
+        this.alertIcon = 'mdi-information'
+      }
+    })
   },
   filters: {
     dateFormat(x){
