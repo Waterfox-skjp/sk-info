@@ -50,11 +50,12 @@ export default {
   mounted() {
     const api = 'https://script.google.com/macros/s/AKfycbzQX1bZCwguPr9SPWl1zGEn2CuAbzsn6-UWwaX1mWB_elhyMrw/exec'
     this.$http.get(api).then(response => {
+      var update = response.data.update
       var result = response.data.mileageList
       this.data['labels'] = result.map(item=>item.trainNum)
       this.data['datasets'][0]['data'] = result.map(item=>item.mileage)
 
-      this.$emit('updated')
+      this.$emit('updated',update)
       this.renderChart(this.data, this.options)
     })
   }

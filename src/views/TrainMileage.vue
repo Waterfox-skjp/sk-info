@@ -14,6 +14,17 @@
           text="編成別の走行距離を確認することができます"
         >
           <v-card-text>
+          <v-alert
+            :value="true"
+            color="warning"
+            icon="mdi-alert"
+            outline
+            class="mb-4"
+            dismissible
+          >
+            8928編成は前回入場時から、80016編成は営業開始日から起算。<br>
+            そのほかの編成については2019年12月○○日から起算。
+          </v-alert>
             <template v-if="chartStatus == false">
               <div class="text-xs-center">
                 <v-progress-circular
@@ -24,7 +35,10 @@
                 ></v-progress-circular>
               </div>
             </template>
-            <chart style="position: relative; height: 1000px" @updated="statusUpdate"></chart>
+            <template v-if="chartStatus">
+              <p class="body-1">{{ update | dateFormat }} 更新</p>
+            </template>
+            <chart :style="chartStyle" @updated="statusUpdate"></chart>
           </v-card-text>
         </material-card>
       </v-flex>
@@ -33,7 +47,8 @@
 </template>
 
 <script>
-import Chart from '@/components/material/MileageChart.vue';
+import Chart from '@/components/material/MileageChart.vue'
+import dayjs from 'dayjs'
 
 export default {
   components: {
@@ -41,12 +56,21 @@ export default {
   },
   data() {
     return {
-      chartStatus: false
+      chartStatus: false,
+      update: '',
+      chartStyle: 'display: none'
     }
   },
   methods: {
-    statusUpdate(){
+    statusUpdate(x){
       this.chartStatus = true
+      this.update = x
+      this.chartStyle = 'position: relative; height: 1000px'
+    }
+  },
+  filters: {
+    dateFormat(x){
+      return dayjs(x).format('YYYY-MM-DD HH:mm')
     }
   }
 }
