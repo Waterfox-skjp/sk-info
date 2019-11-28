@@ -55,13 +55,19 @@
               ></v-text-field>
             </v-flex>
           </v-layout>
-          <v-progress-linear indeterminate v-if="pathList.length == 0" height="5"></v-progress-linear>
           <v-data-table
             :headers="headers"
             :items="pathList"
             :search="search"
+            :loading="pathList.length == 0"
             hide-actions
           >
+            <template v-slot:progress>
+              <v-progress-linear
+                :height="5"
+                indeterminate
+              />
+            </template>
             <template
               slot="headerCell"
               slot-scope="{ header }"
