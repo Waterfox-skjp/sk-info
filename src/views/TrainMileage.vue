@@ -38,7 +38,11 @@
             <template v-if="chartStatus">
               <p class="body-1">{{ update | dateFormat }} 更新</p>
             </template>
-            <chart :style="chartStyle" @updated="statusUpdate"></chart>
+            <div class="chartWrap">
+            <div :style="chartStyle">
+              <chart style="position: relative; height: 1000px" @updated="statusUpdate"></chart>
+            </div>
+            </div>
           </v-card-text>
         </material-card>
       </v-flex>
@@ -58,14 +62,14 @@ export default {
     return {
       chartStatus: false,
       update: '',
-      chartStyle: 'display: none'
+      chartStyle: 'position: absolute; width:100%'
     }
   },
   methods: {
     statusUpdate(x){
       this.chartStatus = true
       this.update = x
-      this.chartStyle = 'position: relative; height: 1000px'
+      this.chartStyle = 'position: relative; width:100%'
     }
   },
   filters: {
@@ -88,4 +92,5 @@ export default {
     margin-left: 20px;
     width: 260px;
   }
+  .chartWrap { position: relative; }
 </style>
