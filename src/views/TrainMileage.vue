@@ -23,7 +23,7 @@
             dismissible
           >
             8928編成は前回入場時から、80016編成は営業開始日から起算。<br>
-            そのほかの編成については2019年12月○○日から起算。
+            そのほかの編成については2019/12/○○から起算。
           </v-alert>
             <template v-if="chartStatus == false">
               <div class="text-xs-center">
@@ -70,7 +70,7 @@ export default {
   },
   filters: {
     dateFormat(x){
-      return dayjs(x).format('YYYY-MM-DD HH:mm')
+      return dayjs(x).format('YYYY/MM/DD HH:mm')
     }
   }
 }

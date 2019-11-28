@@ -92,7 +92,7 @@ export default {
   },
   filters: {
     dateFormat(x){
-      return dayjs(x).format('YYYY-MM-DD HH:mm')
+      return dayjs(x).format('YYYY/MM/DD HH:mm')
     },
     causeFormat(y){
       var cause = ''
