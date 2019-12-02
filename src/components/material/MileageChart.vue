@@ -26,7 +26,7 @@ export default {
             ticks: {
               beginAtZero: true, //0から始まる
               min: 0,
-              stepSize: 50
+              stepSize: 5000
             },
             scaleLabel: {
               display: true,
@@ -37,10 +37,8 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              return data.labels[tooltipItem.index]
-                + ": "
-                + data.datasets[0].data[tooltipItem.index]
-                + "km"; //ここで単位を付けます
+              return data.datasets[0].data[tooltipItem.index] + 'km'; //ここで単位を付けます
+              // data.labels[tooltipItem.index] + ': ' + data.datasets[0].data[tooltipItem.index] + 'km'; //ここで単位を付けます
             }
           }
         }
