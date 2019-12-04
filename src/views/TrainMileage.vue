@@ -92,5 +92,5 @@ export default {
     margin-left: 20px;
     width: 260px;
   }
-  .chartWrap { position: relative; }
+  .chartWrap { position: relative; overflow: hidden; }
 </style>

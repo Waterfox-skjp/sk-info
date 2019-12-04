@@ -37,7 +37,9 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              return data.datasets[0].data[tooltipItem.index] + 'km'; //ここで単位を付けます
+              var labelMileage = data.datasets[0].data[tooltipItem.index]
+              labelMileage = Math.floor(labelMileage * Math.pow(10, 1)) / Math.pow(10, 1) // 小数第1位まで表示
+              return labelMileage + 'km'; //ここで単位を付けます
               // data.labels[tooltipItem.index] + ': ' + data.datasets[0].data[tooltipItem.index] + 'km'; //ここで単位を付けます
             }
           }
