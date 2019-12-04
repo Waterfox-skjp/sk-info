@@ -55,7 +55,7 @@ import {
 
 export default {
   data: () => ({
-    logo: '/img/vuetifylogo.png',
+    logo: '/img/icon.png',
     links: [
       {
         to: '/',
@@ -148,7 +148,7 @@ export default {
     }
 
     .v-image__image--contain {
-      top: 9px;
+      top: 7px;
       height: 60%;
     }
 
