@@ -49,17 +49,6 @@
           </v-card-text>
         </material-card>
       </v-flex>
-      <v-flex xs12>
-        <material-card
-          color="primary"
-          title="試運転情報"
-          text="今日の試運転情報について確認することができます"
-        >
-          <v-card-text>
-
-          </v-card-text>
-        </material-card>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
