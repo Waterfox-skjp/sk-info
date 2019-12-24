@@ -19,12 +19,8 @@
       &copy;
       {{ (new Date()).getFullYear() }}
       <a
-        href="https://www.creative-tim.com/"
-        target="_blank">Creative Tim</a>, made with
-      <v-icon
-        color="tertiary"
-        size="17">mdi-heart</v-icon>
-      for a better web
+        href="https://twitter.com/Waterfox_skjp/"
+        target="_blank">Waterfox</a>
     </span>
   </v-footer>
 </template>
@@ -33,10 +29,7 @@
 export default {
   data: () => ({
     links: [
-      { name: 'Home', Link: '/dashboard' },
-      { name: 'Creative Tim', Link: 'https://www.creative-tim.com' },
-      { name: 'About Us', Link: 'https://creative-tim.com/presentation' },
-      { name: 'Blog', Link: 'https://blog.creative-tim.com' }
+      { name: 'shin-kei-sei Web', Link: 'https://www.shinkeisei.co.jp/' }
     ]
   })
 }
