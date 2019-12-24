@@ -41,7 +41,7 @@
           text="今日の試運転情報について確認することができます"
         >
           <v-card-text>
-            準備中です
+            <p>準備中です</p>
           </v-card-text>
         </material-card>
       </v-flex>

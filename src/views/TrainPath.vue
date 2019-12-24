@@ -144,7 +144,7 @@ export default {
       })
     },
     allowedDate(val) {
-      let startday = new Date('2019-07-06')
+      let startday = new Date('2019-11-01')
       let endDay = new Date(this.maxDate)
       return startday <= new Date(val) && new Date(val) <= endDay
     },
