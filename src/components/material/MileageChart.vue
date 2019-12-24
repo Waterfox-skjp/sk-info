@@ -26,7 +26,7 @@ export default {
             ticks: {
               beginAtZero: true, //0から始まる
               min: 0,
-              stepSize: 5000
+              stepSize: 10000
             },
             scaleLabel: {
               display: true,
