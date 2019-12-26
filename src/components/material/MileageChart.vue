@@ -4,7 +4,7 @@ import { HorizontalBar } from 'vue-chartjs'
 export default {
   extends: HorizontalBar,
   name: 'chart',
-  data () {
+  data() {
     return {
       data: {
         labels: [],
@@ -36,7 +36,7 @@ export default {
         },
         tooltips: {
           callbacks: {
-            label: function (tooltipItem, data) {
+            label(tooltipItem, data) {
               var labelMileage = data.datasets[0].data[tooltipItem.index]
               labelMileage = Math.floor(labelMileage * Math.pow(10, 1)) / Math.pow(10, 1) // 小数第1位まで表示
               return labelMileage + 'km'; //ここで単位を付けます
@@ -50,10 +50,10 @@ export default {
   mounted() {
     const api = 'https://script.google.com/macros/s/AKfycbzQX1bZCwguPr9SPWl1zGEn2CuAbzsn6-UWwaX1mWB_elhyMrw/exec'
     this.$http.get(api).then(response => {
-      var update = response.data.update
+      var update = response.data.update // 更新日
       var result = response.data.mileageList
-      this.data['labels'] = result.map(item=>item.trainNum)
-      this.data['datasets'][0]['data'] = result.map(item=>item.mileage)
+      this.data['labels'] = result.map(item=>item.trainNum) // 編成
+      this.data['datasets'][0]['data'] = result.map(item=>item.mileage) // 走行距離
 
       this.$emit('updated',update)
       this.renderChart(this.data, this.options)

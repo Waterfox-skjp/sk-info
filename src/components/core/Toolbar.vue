@@ -47,39 +47,38 @@ import {
 } from 'vuex'
 
 export default {
-  data: () => ({
-    notifications: [
-      'Mike, John responded to your email',
-      'You have 5 new tasks',
-      'You\'re now a friend with Andrew',
-      'Another Notification',
-      'Another One'
-    ],
-    title: null,
-    responsive: false,
-    responsiveInput: false
-  }),
-
+  data(){
+    return {
+      notifications: [
+        'Mike, John responded to your email',
+        'You have 5 new tasks',
+        'You\'re now a friend with Andrew',
+        'Another Notification',
+        'Another One'
+      ],
+      title: null,
+      responsive: false,
+      responsiveInput: false
+    }
+  },
   watch: {
     '$route' (val) {
       this.title = val.name
     }
   },
-
-  mounted () {
+  mounted() {
     this.onResponsiveInverted()
     window.addEventListener('resize', this.onResponsiveInverted)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     window.removeEventListener('resize', this.onResponsiveInverted)
   },
-
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
     onClickBtn () {
       this.setDrawer(!this.$store.state.app.drawer)
     },
-    onClick () {
+    onClick() {
       //
     },
     onResponsiveInverted () {

@@ -70,30 +70,32 @@
 import dayjs from 'dayjs'
 
 export default {
-	data: () => ({
-		location: 'Matsudo', // 地方選択 初期値
-		locationSelect: [ // 地方選択
-			{ value: 'Matsudo', label: '松戸（Matsudo）' },
-			{ value: 'Funabashi', label: '船橋（Funabashi）' },
-			{ value: 'Narashino', label: '習志野（Narashino）' }
-		],
-		today: {
-			city: '', // 都市名
-			temp: '', // 現在気温
-			pressure: '', // 気圧
-			humidity: '', // 湿度
-			tempMin: '', // 最低気温
-			tempMax: '', // 最高気温
-			wind: '', // 風速
-			condition: '', // コンディション
-			icon: 'processing' // アイコン
-		},
-		forecast: [], // 3時間ごとの天気を格納する配列
-		rowsPerPageItems: [6, 12, 18], // リスト表示個数
-		pagination: {
-			rowsPerPage: 6 // リスト表示個数 初期値
+	data(){
+		return {
+			location: 'Matsudo', // 地方選択 初期値
+			locationSelect: [ // 地方選択
+				{ value: 'Matsudo', label: '松戸（Matsudo）' },
+				{ value: 'Funabashi', label: '船橋（Funabashi）' },
+				{ value: 'Narashino', label: '習志野（Narashino）' }
+			],
+			today: {
+				city: '', // 都市名
+				temp: '', // 現在気温
+				pressure: '', // 気圧
+				humidity: '', // 湿度
+				tempMin: '', // 最低気温
+				tempMax: '', // 最高気温
+				wind: '', // 風速
+				condition: '', // コンディション
+				icon: 'processing' // アイコン
+			},
+			forecast: [], // 3時間ごとの天気を格納する配列
+			rowsPerPageItems: [6, 12, 18], // リスト表示個数
+			pagination: {
+				rowsPerPage: 6 // リスト表示個数 初期値
+			}
 		}
-	}),
+	},
   mounted() {
     this.changeLocation()
   },

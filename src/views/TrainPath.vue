@@ -97,36 +97,38 @@
 import { db } from '@/plugins/firebase'
 
 export default {
-  data: () => ({
-    setDate: '',
-    maxDate: '',
-    search: '',
-    datePicker: false,
-    pathList: [],
-    headers: [
-      {
-        sortable: false,
-        text: '列車番号',
-        value: 'pathNum'
-      },
-      {
-        sortable: false,
-        text: '運用形態',
-        value: 'pathType'
-      },
-      {
-        sortable: false,
-        text: '編成',
-        value: 'trainNum'
-      },
-      {
-        sortable: false,
-        text: '形式',
-        value: 'trainType'
-        //align: 'right'
-      }
-    ]
-  }),
+  data(){
+    return {
+      setDate: '',
+      maxDate: '',
+      search: '',
+      datePicker: false,
+      pathList: [],
+      headers: [
+        {
+          sortable: false,
+          text: '列車番号',
+          value: 'pathNum'
+        },
+        {
+          sortable: false,
+          text: '運用形態',
+          value: 'pathType'
+        },
+        {
+          sortable: false,
+          text: '編成',
+          value: 'trainNum'
+        },
+        {
+          sortable: false,
+          text: '形式',
+          value: 'trainType'
+          //align: 'right'
+        }
+      ]
+    }
+  },
   created(){
     this.getLastDate()
   },
@@ -143,18 +145,18 @@ export default {
         console.log('データの取得に失敗しました', err)
       })
     },
-    allowedDate(val) {
+    allowedDate(val) { // 日付ピッカーの範囲を決定
       let startday = new Date('2019-11-01')
       let endDay = new Date(this.maxDate)
       return startday <= new Date(val) && new Date(val) <= endDay
     },
-    getLastDate(){
+    getLastDate(){ //
       var trainPath = db.collection("trainPath").orderBy("timestamp", "desc").limit(1)
       var self = this
       trainPath.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          self.setDate = doc.id
-          self.maxDate = doc.id
+          self.setDate = doc.id // ピッカー用の日付
+          self.maxDate = doc.id // 存在する最新の日付
         })
       })
       .catch(err => {

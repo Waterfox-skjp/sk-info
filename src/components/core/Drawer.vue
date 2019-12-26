@@ -54,52 +54,54 @@ import {
 } from 'vuex'
 
 export default {
-  data: () => ({
-    logo: '/img/icon.png',
-    links: [
-      {
-        to: '/',
-        icon: 'mdi-home',
-        text: 'Home'
-      },
-      {
-        to: '/information/',
-        icon: 'mdi-information',
-        text: 'Information'
-      },
-      {
-        to: '/train-path/',
-        icon: 'mdi-train',
-        text: 'Train Path'
-      },
-      {
-        to: '/train-mileage/',
-        icon: 'mdi-speedometer',
-        text: 'Train Mileage'
-      },
-      // {
-      //   to: '/typography/',
-      //   icon: 'mdi-format-font',
-      //   text: 'Typography'
-      // },
-      // {
-      //   to: '/icons/',
-      //   icon: 'mdi-chart-bubble',
-      //   text: 'Icons'
-      // },
-      {
-        to: '/maps/',
-        icon: 'mdi-google-maps',
-        text: 'Maps'
-      },
-      // {
-      //   to: '/notifications/',
-      //   icon: 'mdi-bell',
-      //   text: 'Notifications'
-      // }
-    ],
-    responsive: false
-  }),
+  data(){
+    return {
+      logo: '/img/icon.png',
+      links: [
+        {
+          to: '/',
+          icon: 'mdi-home',
+          text: 'Home'
+        },
+        {
+          to: '/information/',
+          icon: 'mdi-information',
+          text: 'Information'
+        },
+        {
+          to: '/train-path/',
+          icon: 'mdi-train',
+          text: 'Train Path'
+        },
+        {
+          to: '/train-mileage/',
+          icon: 'mdi-speedometer',
+          text: 'Train Mileage'
+        },
+        // {
+        //   to: '/typography/',
+        //   icon: 'mdi-format-font',
+        //   text: 'Typography'
+        // },
+        // {
+        //   to: '/icons/',
+        //   icon: 'mdi-chart-bubble',
+        //   text: 'Icons'
+        // },
+        {
+          to: '/maps/',
+          icon: 'mdi-google-maps',
+          text: 'Maps'
+        },
+        // {
+        //   to: '/notifications/',
+        //   icon: 'mdi-bell',
+        //   text: 'Notifications'
+        // }
+      ],
+      responsive: false
+    }
+  },
   computed: {
     inputValue: {
       get () {

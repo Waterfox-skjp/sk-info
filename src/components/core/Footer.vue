@@ -27,11 +27,13 @@
 
 <script>
 export default {
-  data: () => ({
-    links: [
-      { name: 'shin-kei-sei Web', Link: 'https://www.shinkeisei.co.jp/' }
-    ]
-  })
+  data(){
+    return {
+      links: [
+        { name: 'shin-kei-sei Web', Link: 'https://www.shinkeisei.co.jp/' }
+      ]
+    }
+  }
 }
 </script>
 

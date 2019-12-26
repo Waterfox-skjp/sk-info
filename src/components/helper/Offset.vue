@@ -20,7 +20,6 @@ export default {
       default: 0
     }
   },
-
   computed: {
     classes () {
       return {

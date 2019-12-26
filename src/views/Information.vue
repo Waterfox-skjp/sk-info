@@ -57,16 +57,19 @@
 import dayjs from 'dayjs'
 
 export default {
-  data: () => ({
-    infoJson: '',
-    alertColor: '',
-    alertIcon: ''
-  }),
+  data(){
+    return {
+      infoJson: '',
+      alertColor: '',
+      alertIcon: ''
+    }
+  },
   created() {
     const api = 'https://script.google.com/macros/s/AKfycbxVH5umFi8gveKyv1it29o5Tz7VfQKlnSoIwSO42qO2iTPgc1o/exec'
     this.$http.get(api).then(response => {
       this.infoJson = response.data
       var status = response.data.status
+      // 状態でアイコンを変える
       if(status == 'delay' || status == 'no-direct' || status == 'other'){
         this.alertColor = 'warning'
         this.alertIcon = 'mdi-alert'

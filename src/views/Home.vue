@@ -80,7 +80,7 @@ export default {
   components: {
     Weather
   },
-  data () {
+  data() {
     return {
       infoJson: '',
       alertColor: '',
@@ -92,6 +92,7 @@ export default {
     this.$http.get(api).then(response => {
       this.infoJson = response.data
       var status = response.data.status
+      // 状態でアイコンを変える
       if(status == 'delay' || status == 'no-direct' || status == 'other'){
         this.alertColor = 'warning'
         this.alertIcon = 'mdi-alert'

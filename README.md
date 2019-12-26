@@ -15,6 +15,11 @@ npm run serve
 npm run build
 ```
 
+### Compiles and minifies for production and Firebase deploy
+```
+npm run deploy
+```
+
 ### Run your tests
 ```
 npm run test
