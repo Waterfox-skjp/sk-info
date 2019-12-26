@@ -84,7 +84,7 @@
               <td>{{ item.pathNum }}</td>
               <td>{{ item.pathType | pathTypeSet }}</td>
               <td>{{ item.trainNum }}<template v-if="item.trainNum">F</template></td>
-              <td>{{ item.trainType }}<template v-if="item.trainType">形</template></td>
+              <td><template v-if="item.trainType"><img :src="iconDisplay(item.trainType,item.trainNum)" :alt="item.trainType" class="ico-train"><span class="train-type-txt">{{ item.trainType }}形</span></template></td>
             </template>
           </v-data-table>
         </material-card>
@@ -162,6 +162,13 @@ export default {
       .catch(err => {
         console.log('データの取得に失敗しました', err)
       })
+    },
+    iconDisplay(trainType,trainNum){
+      // 8512Fの時だけアイコンを変える
+      if(trainNum == 8512){
+        trainType = 8512
+      }
+      return '/img/train-icon/' + trainType + '.png'
     }
   },
   filters: {
@@ -181,5 +188,10 @@ export default {
 </script>
 
 <style lang="scss">
+  .ico-train { height: 2.2em; vertical-align: middle; }
+  .train-type-txt { margin-left: .5em; }
   .v-progress-linear { margin: 0; }
+  @media only screen and (max-width:640px){
+    .train-type-txt { display: none; }
+  }
 </style>
