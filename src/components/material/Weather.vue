@@ -1,6 +1,17 @@
 <template>
 	<v-layout wrap align-center>
 		<v-flex md12>
+			<v-alert
+				:value="today.icon == 'processing'"
+				color="error"
+				icon="mdi-alert-decagram"
+				outline
+				class="mb-4"
+			>
+				天気情報を取得できませんでした。以下の要因が考えられます。<br>
+				・APIに不具合が発生している<br>
+				・アドブロックが有効になっている
+			</v-alert>
 			<v-select :items="locationSelect" item-value="value" item-text="label" v-model="location"  label="地域選択" @change="changeLocation"></v-select>
 		</v-flex>
 		<v-flex xs12 md6 class="text-xs-center">
