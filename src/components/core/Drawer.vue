@@ -74,6 +74,11 @@ export default {
           text: 'Train Path'
         },
         {
+          to: '/path-details/',
+          icon: 'mdi-swap-horizontal-variant',
+          text: 'Path Details'
+        },
+        {
           to: '/train-mileage/',
           icon: 'mdi-speedometer',
           text: 'Train Mileage'

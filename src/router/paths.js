@@ -24,19 +24,24 @@ export default [
     view: 'TrainMileage'
   },
   {
-    path: '/typography/',
-    view: 'Typography'
-  },
-  {
-    path: '/icons/',
-    view: 'Icons'
-  },
-  {
-    path: '/maps/',
-    view: 'Maps'
-  },
-  {
-    path: '/notifications/',
-    view: 'Notifications'
-  }
+    path: '/path-details/',
+    name: 'Path Details',
+    view: 'PathDetails'
+  }//,
+  // {
+  //   path: '/typography/',
+  //   view: 'Typography'
+  // },
+  // {
+  //   path: '/icons/',
+  //   view: 'Icons'
+  // },
+  // {
+  //   path: '/maps/',
+  //   view: 'Maps'
+  // },
+  // {
+  //   path: '/notifications/',
+  //   view: 'Notifications'
+  // }
 ]
