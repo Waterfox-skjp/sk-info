@@ -97,7 +97,7 @@ export default {
         this.alertColor = 'warning'
         this.alertIcon = 'mdi-alert'
       }else if(status == 'stop'){
-        this.alertColor = 'danger'
+        this.alertColor = 'error'
         this.alertIcon = 'mdi-alert-decagram'
       }else{
         this.alertColor = 'success'
