@@ -15,17 +15,17 @@ export default [
   },
   {
     path: '/train-path/',
-    name: 'Train Path',
+    name: 'TrainPath',
     view: 'TrainPath'
   },
   {
     path: '/train-mileage/',
-    name: 'Train Mileage',
+    name: 'TrainMileage',
     view: 'TrainMileage'
   },
   {
     path: '/path-details/',
-    name: 'Path Details',
+    name: 'PathDetails',
     view: 'PathDetails'
   }//,
   // {

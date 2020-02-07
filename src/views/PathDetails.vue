@@ -54,6 +54,12 @@ export default {
       pathNumber: '801'
     }
   },
+  created(){
+    if(this.$route.query.pathNumber){
+      this.pathNumber = this.$route.query.pathNumber
+      this.pathType = this.$route.query.pathType
+    }
+  },
   methods: {
     pathSelect(){
       var x = []

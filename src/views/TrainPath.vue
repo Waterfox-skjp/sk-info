@@ -81,7 +81,12 @@
               slot="items"
               slot-scope="{ item }"
             >
-              <td>{{ item.pathNum }}</td>
+              <td>
+                {{ item.pathNum }}
+                <template v-if="maxDate == setDate && item.pathNum != '702M' && item.trainNum">
+                  <router-link :to="{name: 'PathDetails', query: {pathType: pathType, pathNumber: item.pathNum}}" class="ml-1"><v-icon small class="text-primary">mdi-launch</v-icon></router-link>
+                </template>
+              </td>
               <td>{{ item.pathType | pathTypeSet }}</td>
               <td>{{ item.trainNum }}<template v-if="item.trainNum">F</template></td>
               <td><template v-if="item.trainType"><img :src="iconDisplay(item.trainType,item.trainNum)" :alt="item.trainType" class="ico-train"><span class="train-type-txt">{{ item.trainType }}形</span></template></td>
@@ -104,6 +109,7 @@ export default {
       search: '',
       datePicker: false,
       pathList: [],
+      pathType: '',
       headers: [
         {
           sortable: false,
@@ -140,6 +146,11 @@ export default {
       var trainPath = db.collection('trainPath').doc(this.setDate);
       trainPath.get().then(doc => {
         this.pathList = doc.data().pathData
+        if(doc.data().pathType){
+          this.pathType = doc.data().pathType
+        }else{
+          this.pathType = 'weekday'
+        }
       })
       .catch(err => {
         console.log('データの取得に失敗しました', err)
