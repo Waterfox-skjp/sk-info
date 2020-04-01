@@ -84,7 +84,7 @@
               <td>
                 {{ item.pathNum }}
                 <template v-if="maxDate == setDate && item.pathNum != '702M' && item.trainNum">
-                  <router-link :to="{name: 'PathDetails', query: {pathType: pathType, pathNumber: item.pathNum}}" class="ml-1"><v-icon small class="text-primary">mdi-launch</v-icon></router-link>
+                  <router-link :to="{name: 'PathDetails', query: {pathType: pathType, pathNumber: item.pathNum}}" class="ml-1"><v-icon middle class="text-primary">mdi-launch</v-icon></router-link>
                 </template>
               </td>
               <td>{{ item.pathType | pathTypeSet }}</td>
@@ -202,6 +202,7 @@ export default {
   .ico-train { height: 2.2em; vertical-align: middle; }
   .train-type-txt { margin-left: .5em; }
   .v-progress-linear { margin: 0; }
+  table.v-table .v-icon { vertical-align: middle; }
   @media only screen and (max-width:640px){
     .train-type-txt { display: none; }
   }
