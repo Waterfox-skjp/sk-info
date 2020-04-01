@@ -27,7 +27,7 @@ export default [
     path: '/path-details/',
     name: 'PathDetails',
     view: 'PathDetails'
-  }//,
+  },
   // {
   //   path: '/typography/',
   //   view: 'Typography'
@@ -36,10 +36,10 @@ export default [
   //   path: '/icons/',
   //   view: 'Icons'
   // },
-  // {
-  //   path: '/maps/',
-  //   view: 'Maps'
-  // },
+  {
+    path: '/maps/',
+    view: 'Maps'
+  },
   // {
   //   path: '/notifications/',
   //   view: 'Notifications'
