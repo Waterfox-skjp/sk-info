@@ -32,3 +32,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## 参考
+Vue.jsで「？」から始まるURLのクエリパラメータを設定・取得する方法 [https://code-pocket.info/20190629232/](https://code-pocket.info/20190629232/)
