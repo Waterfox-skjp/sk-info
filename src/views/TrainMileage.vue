@@ -16,14 +16,12 @@
           <v-card-text>
           <v-alert
             :value="true"
-            color="warning"
-            icon="mdi-alert"
+            color="primary"
+            icon="mdi-information"
             outline
             class="mb-4"
-            dismissible
           >
-            8928編成・N848編成は前回入場時から、80016編成は営業開始日から起算。<br>
-            そのほかの編成については2019/12/01から起算。
+            グレーのグラフは2019年12月1日から起算。<br>ピンクのグラフは前回検査、もしくは営業開始日から起算。
           </v-alert>
             <template v-if="chartStatus == false">
               <div class="text-xs-center">
