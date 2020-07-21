@@ -21,16 +21,16 @@
                 <div>{{ infoJson.update | dateFormat }} 時点</div>
                 <div class="subheading">{{ infoJson.text }}</div>
               </v-alert>
-              <v-layout align-center justify-start v-if="infoJson.cause != '' || infoJson.tags.station != '' || infoJson.tags.line != ''">
-                <v-flex xs1>
+              <v-layout align-start justify-start v-if="infoJson.cause != '' || infoJson.tags.station != '' || infoJson.tags.line != ''">
+                <v-flex class="tag-text">
                   関連タグ：
                 </v-flex>
-                <v-flex class="text-xs-left">
+                <v-flex class="text-xs-left tags">
                   <v-chip v-if="infoJson.cause">{{ infoJson.cause | causeFormat }}</v-chip>
-                  <v-chip v-for="(item, index) in infoJson.tags.station" :key="index">
+                  <v-chip v-for="(item, index) in infoJson.tags.station" :key="`first-${index}`">
                     {{ item }}
                   </v-chip>
-                  <v-chip v-for="(item, index) in infoJson.tags.line" :key="index">
+                  <v-chip v-for="(item, index) in infoJson.tags.line" :key="`second-${index}`">
                     {{ item }}
                   </v-chip>
                 </v-flex>
@@ -138,3 +138,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .tag-text { padding-top: .5em; flex: none; }
+</style>
